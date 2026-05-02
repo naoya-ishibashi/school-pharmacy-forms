@@ -740,13 +740,14 @@
 <div class="status-bar" id="status"></div>
 
 <script>
-// SheetJS（XLSX）動的ローダ：複数CDNフォールバック＋on-demand再試行
-// 機内モード/電波が弱い／一部CDNがブロックされている環境でもエクセル出力できるようにする
+// SheetJS（XLSX）動的ローダ：ローカルファイル優先＋複数CDNフォールバック
+// ローカル配置により学校ネットワーク環境でも動作する
 window.loadXLSX = (function(){
   var CDNS = [
-    "https://cdn.jsdelivr.net/npm/xlsx@0.20.3/dist/xlsx.full.min.js",
-    "https://unpkg.com/xlsx@0.20.3/dist/xlsx.full.min.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.20.3/xlsx.full.min.js"
+    "./xlsx.full.min.js",
+    "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js",
+    "https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"
   ];
   var loadingPromise = null;
   function loadOne(url){
