@@ -33,6 +33,17 @@
   .notes h3 { font-size:13px; margin:0 0 4px; color:#7a4a00; }
   .notes ul { padding-left:18px; margin:4px 0; font-size:12px; }
   .notes li { margin-bottom:2px; }
+  .gear { background:#eaf6ff; border:1px solid #9ed0ff; border-radius:6px; padding:10px 12px; margin-bottom:12px; }
+  .gear h3 { font-size:13px; margin:0 0 4px; color:#0a4a8a; }
+  .gear ul { padding-left:18px; margin:4px 0; font-size:12px; column-gap:18px; }
+  @media (min-width: 720px) { .gear ul { column-count:2; } }
+  .gear li { margin-bottom:2px; break-inside:avoid; }
+  .steps { background:#ebf7ed; border:1px solid #9bd3aa; border-radius:6px; padding:10px 12px; margin-bottom:12px; }
+  .steps h3 { font-size:13px; margin:0 0 6px; color:#1b6b3b; }
+  .steps ol { padding-left:22px; margin:4px 0; font-size:12px; counter-reset:step; list-style:none; }
+  .steps ol > li { position:relative; margin-bottom:4px; padding-left:6px; }
+  .steps ol > li::before { counter-increment:step; content:counter(step); position:absolute; left:-22px; top:0; width:18px; height:18px; line-height:18px; text-align:center; background:#1b6b3b; color:#fff; border-radius:50%; font-size:11px; font-weight:700; }
+  .steps .tip { font-size:11px; color:#3a7a4a; margin-top:6px; padding-top:6px; border-top:1px dashed #9bd3aa; }
   .field { display:grid; grid-template-columns: 1fr; gap:6px; padding:8px 0; border-bottom:1px dashed #eef0f4; }
   @media (min-width: 720px) { .field { grid-template-columns: 220px 1fr; align-items:center; } }
   .field:last-child { border-bottom:none; }
@@ -720,11 +731,51 @@
   <a class="home-link" href="#home">↑ ホームに戻る</a>
 </section>
 
+
+  <footer style="text-align:center; font-size:11px; color:#999; padding:20px 0 0;">
+    Build: 2026-04-29 11:03 ／ <a href="javascript:location.reload(true);" style="color:#999;">最新版に更新</a>
+  </footer>
 </main>
 
 <div class="status-bar" id="status"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.20.3/dist/xlsx.full.min.js"></script>
+<script>
+// SheetJS（XLSX）動的ローダ：複数CDNフォールバック＋on-demand再試行
+// 機内モード/電波が弱い／一部CDNがブロックされている環境でもエクセル出力できるようにする
+window.loadXLSX = (function(){
+  var CDNS = [
+    "https://cdn.jsdelivr.net/npm/xlsx@0.20.3/dist/xlsx.full.min.js",
+    "https://unpkg.com/xlsx@0.20.3/dist/xlsx.full.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.20.3/xlsx.full.min.js"
+  ];
+  var loadingPromise = null;
+  function loadOne(url){
+    return new Promise(function(resolve, reject){
+      var s = document.createElement("script");
+      s.src = url; s.async = true; s.crossOrigin = "anonymous";
+      s.onload  = function(){ (typeof XLSX !== "undefined") ? resolve() : reject(new Error("loaded but XLSX undefined: "+url)); };
+      s.onerror = function(){ reject(new Error("script error: "+url)); };
+      document.head.appendChild(s);
+    });
+  }
+  return function loadXLSX(){
+    if (typeof XLSX !== "undefined") return Promise.resolve();
+    if (loadingPromise) return loadingPromise;
+    loadingPromise = (async function(){
+      var lastErr;
+      for (var i = 0; i < CDNS.length; i++){
+        try { await loadOne(CDNS[i]); if (typeof XLSX !== "undefined") return; }
+        catch(e){ lastErr = e; console.warn("[loadXLSX] fail:", e && e.message); }
+      }
+      loadingPromise = null;
+      throw new Error("Excelエンジン(SheetJS)を読み込めませんでした。電波／Wi-Fiをご確認のうえ再度お試しください。");
+    })();
+    return loadingPromise;
+  };
+})();
+// ページ読み込み時に1度だけ事前読み込みを試行（成功すればブラウザキャッシュに乗る）
+window.addEventListener("load", function(){ window.loadXLSX().catch(function(){ /* 失敗時はクリック時に再試行 */ }); });
+</script>
 <script>
 // JS有効バナー消去
 document.getElementById("js-banner").style.display = "none";
@@ -872,11 +923,14 @@ function b64ToUint8(b64) {
 
 // 出力
 document.querySelectorAll(".export-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", async () => {
     const id = btn.dataset.id;
     showStatus("作成中…");
     try {
-      if (typeof XLSX === "undefined") throw new Error("SheetJSが読み込まれていません（インターネット接続を確認）");
+      if (typeof XLSX === "undefined") {
+        showStatus("Excelエンジン読み込み中…（初回のみ）");
+        await window.loadXLSX();
+      }
       const tplB64 = TEMPLATES[id];
       if (!tplB64) throw new Error("テンプレ未登録: " + id);
       const meta = META[id];
@@ -938,6 +992,227 @@ document.querySelectorAll(".export-btn").forEach((btn) => {
     }
   });
 });
+
+// 各検査票上部に「携行品リスト」を自動挿入
+const GEAR_BY_ID = {
+  "dani": [
+    "ダニアレルゲン検査キット（マイティチェッカー等）／試験紙",
+    "保健室寝具用の小型掃除機 または ヘッドノズル",
+    "1㎡測定用テンプレ（30×30cmなどでもOK）／メジャー",
+    "採取袋（ジップロック）・ラベル・使い捨て手袋",
+    "温湿度計／タイマー（1分計測用）",
+    "記録用紙・筆記用具・清拭用ウェス"
+  ],
+  "air": [
+    "北川式CO₂検知管（No.126SF など）",
+    "気体採取器（AP-20 等）／予備用ハンドル",
+    "温湿度計／ストップウォッチ（2分用）",
+    "記録用紙・筆記用具",
+    "予備のシリコンチューブ・封口部の清拭布"
+  ],
+  "formaldehyde": [
+    "ホルムアルデヒドTABチェッカー（要冷所保管）",
+    "保冷バッグ＋保冷剤（移動中の温度管理）",
+    "30分タイマー／温湿度計",
+    "判定用カラースケール（説明書同梱）",
+    "記録用紙・筆記用具"
+  ],
+  "airflow": [
+    "熱線風速計 ×2台（1分計測用）",
+    "デジタル粉じん計（光散乱式）",
+    "三脚 または スタンド",
+    "温湿度計／ストップウォッチ",
+    "記録用紙・筆記用具"
+  ],
+  "illuminance": [
+    "デジタル照度計（受光部の保護キャップ込み）",
+    "メジャー（机上面までの距離確認）",
+    "教室レイアウト図／測定点プロット用紙",
+    "黒板・白板照度の測定用シート",
+    "記録用紙・筆記用具"
+  ],
+  "nox_co": [
+    "北川式 NO₂検知管（No.117SP 等）",
+    "北川式 CO検知管（No.106SH 等）",
+    "気体採取器（AP-20 等）",
+    "温湿度計／ストップウォッチ",
+    "記録用紙・筆記用具"
+  ],
+  "blackboard": [
+    "マンセル色票（黒板検査用 9枚セット）",
+    "メジャー（測定位置の確認）",
+    "教室レイアウト図／チェックシート",
+    "記録用紙・筆記用具"
+  ],
+  "water": [
+    "DPD試薬（残留塩素測定用）",
+    "比色管 または 残留塩素測定器",
+    "pH試験紙 または pHメーター",
+    "ストップウォッチ（10分流水用）",
+    "採水瓶（パソラボ／県薬剤師会提供）",
+    "クーラーボックス＋保冷剤（検体搬送）",
+    "記録用紙・筆記用具"
+  ],
+  "pool": [
+    "DPD試薬 0.5mL（または比色紙）",
+    "残留塩素・pH比色器",
+    "過マンガン酸カリウム消費量試薬",
+    "透視度計／検水容器",
+    "採水バケツまたはひしゃく",
+    "記録用紙・筆記用具"
+  ],
+  "env": [
+    "環境検査チェックリスト",
+    "メジャー（必要時）／カメラ（記録用）",
+    "ペンライト・手袋（隅の点検用）",
+    "記録用紙・筆記用具"
+  ],
+  "kitchen": [
+    "給食室検査チェックリスト",
+    "学校給食衛生管理基準（参考資料）",
+    "温湿度計（必要時）",
+    "ペンライト・使い捨て手袋",
+    "記録用紙・筆記用具"
+  ],
+  "drug": [
+    "事前配布の医薬品保管管理 調査票（園で記入済）",
+    "SDS（安全データシート）の確認用ファイル",
+    "医薬品保管管理基準（参考資料）",
+    "記録用紙・筆記用具"
+  ]
+};
+function injectGearLists() {
+  for (const id of Object.keys(GEAR_BY_ID)) {
+    const sec = document.querySelector('.form-section[data-id="' + id + '"]');
+    if (!sec) continue;
+    if (sec.querySelector(".gear")) continue; // 二重注入防止
+    const gear = document.createElement("div");
+    gear.className = "gear";
+    const items = GEAR_BY_ID[id].map(t => "<li>" + t + "</li>").join("");
+    gear.innerHTML = '<h3>🎒 携行品リスト</h3><ul>' + items + "</ul>";
+    // .meta-line の直後に挿入（無ければ section の先頭付近）
+    const metaLine = sec.querySelector(".meta-line");
+    if (metaLine && metaLine.nextSibling) {
+      metaLine.parentNode.insertBefore(gear, metaLine.nextSibling);
+    } else {
+      const notes = sec.querySelector(".notes");
+      if (notes) sec.insertBefore(gear, notes);
+      else sec.insertBefore(gear, sec.querySelector("form"));
+    }
+  }
+}
+injectGearLists();
+
+// 各検査票の「注意事項」直下に「検査手順」を自動挿入
+const STEPS_BY_ID = {
+  "dani": [
+    "保健室で寝具・布団・枕・ぬいぐるみなど対象物を確認（シーツがあれば外す）",
+    "1㎡を1分間こすってホコリを掃除機で採取（5箇所以上）",
+    "採取したホコリをダニアレルゲン検査試験紙に展開し、判定液を滴下",
+    "水平な場所で約15分静置し、ライン色で判定（判定 1〜4）",
+    "ホルムアルデヒド検査と同時実施で効率化／結果を記録"
+  ],
+  "air": [
+    "授業中の状態（人数・換気・暖冷房）を観察",
+    "気体採取器に CO₂ 検知管をセット（向きに注意）",
+    "授業終了 5 分前に教室中央で 100mL を約 2 分間吸引",
+    "検知管の変色長を読み取り、CO₂ 濃度を換算",
+    "1500ppm（0.15%）以下を確認／超過なら換気指導後に再測定"
+  ],
+  "formaldehyde": [
+    "保冷バッグから TAB チェッカーを取り出し、室温に戻す",
+    "11:00〜15:00（高温時間帯）に教室中央へ設置",
+    "ふたを開けて 30 分間放置（窓・ドアは検査前と同条件）",
+    "判定カラースケールと比較し濃度を判定",
+    "結果を記録／使用後の TAB は速やかに保冷バッグで持ち帰り冷所保管"
+  ],
+  "airflow": [
+    "エアコン使用中の教室で実施（運転モード・設定温度を記録）",
+    "風速計 2 台を測定位置に三脚で水平設置",
+    "1 分間測定し平均風速を読み取る（複数地点）",
+    "デジタル粉じん計を 5 分間連続測定し相対濃度を取得",
+    "温湿度・天候とあわせて記録"
+  ],
+  "illuminance": [
+    "教室レイアウト図に従い 9 点（中央＋周辺＋黒板側）の測定位置を決める",
+    "カーテン全開・蛍光灯点灯の通常授業状態にする",
+    "机上面（または床から 80cm）で照度計を水平に保ち測定",
+    "黒板・テレビ等は表面に対して垂直照度を測定",
+    "下限値 300lx 以上 ／ 黒板・TV は 100〜500lx を確認し記録"
+  ],
+  "nox_co": [
+    "石油系暖房器具の使用開始から 10 分以上経過していることを確認",
+    "気体採取器に NO₂ 検知管をセットし、規定量を吸引",
+    "続いて CO 検知管に交換し、規定量を吸引",
+    "それぞれ変色長を読み取り濃度を換算",
+    "基準値超過時は換気指導後に再測定／結果を記録"
+  ],
+  "blackboard": [
+    "教室の黒板（またはホワイトボード）を確認、無ければ検査なし",
+    "マンセル色票 9 枚を中央・四隅・上下左右の 9 ヶ所に当てる",
+    "黒板色と色票を反射比較し、最も近い番号を記録",
+    "全 9 ヶ所で基準範囲（黒板：N3 以下 等）に入っているか確認",
+    "傷・反射むらがあれば備考欄にメモ"
+  ],
+  "water": [
+    "事前にできるだけ遠い蛇口を選定（給水末端）",
+    "全開で 10 分流水（当日使用済みなら 5 分）",
+    "蛇口を下向きにし、すすいだ容器で採水",
+    "DPD 試薬で残留塩素 0.1mg/L 以上を確認",
+    "pH 試験紙で 5.8〜8.6、外観・臭気・味を確認",
+    "水質検査用は滅菌瓶で採水し、クーラーボックスで搬送"
+  ],
+  "pool": [
+    "保健室の先生と日程確定（2 週間前から調整、天候次第）",
+    "プール水深 1m 以内の表面水を採取",
+    "DPD 試薬で残留塩素 0.4〜1.0mg/L を確認",
+    "pH 試験紙で 5.8〜8.6 を確認",
+    "過マンガン酸カリウム消費量・透視度を測定",
+    "結果を記録／不適合時は改善指導"
+  ],
+  "env": [
+    "園地・園舎・敷地内を視察し全体の清掃状況を確認",
+    "衛生害虫（ゴキブリ・ねずみ等）の発生有無をチェック",
+    "排水・換気・採光・床面の状態を点検",
+    "大掃除記録が 5 年間保存されているか確認",
+    "改善点・指導事項を記録"
+  ],
+  "kitchen": [
+    "給食室の清掃・整理整頓状況を確認",
+    "食材保管（冷蔵・冷凍庫）の温度管理を点検",
+    "調理器具・食器の洗浄・消毒状況を確認",
+    "従事者の健康管理・服装・手洗い設備を確認",
+    "学校給食衛生管理基準のチェック項目を点検し記録"
+  ],
+  "drug": [
+    "事前配布した調査票を園で記入してもらい当日回収",
+    "医薬品の種類・数量・使用期限・施錠保管を実地確認",
+    "SDS（安全データシート）が紙媒体で保管されているかを確認",
+    "使用期限切れ・破損品があれば廃棄を指導",
+    "結果を記録／改善点は次回までの宿題として共有"
+  ]
+};
+function injectStepsLists() {
+  for (const id of Object.keys(STEPS_BY_ID)) {
+    const sec = document.querySelector('.form-section[data-id="' + id + '"]');
+    if (!sec) continue;
+    if (sec.querySelector(".steps")) continue; // 二重注入防止
+    const steps = document.createElement("div");
+    steps.className = "steps";
+    const items = STEPS_BY_ID[id].map(t => "<li>" + t + "</li>").join("");
+    steps.innerHTML = '<h3>🧭 検査手順</h3><ol>' + items + "</ol>";
+    // .notes の直後（注意事項の下）に挿入
+    const notes = sec.querySelector(".notes");
+    if (notes && notes.nextSibling) {
+      notes.parentNode.insertBefore(steps, notes.nextSibling);
+    } else if (notes) {
+      notes.parentNode.appendChild(steps);
+    } else {
+      sec.insertBefore(steps, sec.querySelector("form"));
+    }
+  }
+}
+injectStepsLists();
 
 // 全フォームの値を復元
 for (const id of Object.keys(FIELDS_BY_ID)) loadLS(id);
