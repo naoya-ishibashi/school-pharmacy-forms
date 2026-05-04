@@ -937,7 +937,9 @@ document.querySelectorAll(".export-btn").forEach((btn) => {
       const meta = META[id];
       const fields = FIELDS_BY_ID[id];
       const buf = b64ToUint8(tplB64);
-      const wb = XLSX.read(buf, { type: "array", cellStyles: true });
+      // cellStyles は SheetJS 無償版(0.18.x)では非対応のため使わない
+      // dense:false でセルオブジェクトを通常マップとして保持し、スタイルを壊さない
+      const wb = XLSX.read(buf, { type: "array" });
       const ws = wb.Sheets[meta.sheet];
       if (!ws) throw new Error("シート未検出: " + meta.sheet);
       const v = getValuesForId(id);
@@ -964,19 +966,13 @@ document.querySelectorAll(".export-btn").forEach((btn) => {
         }
         if (outVal === "" || outVal === undefined || outVal === null) continue;
         for (const cell of f.cells) {
-          ws[cell] = { t: "s", v: String(outVal) };
+          // 既存セルのスタイル（s, z など）を保持し、値だけ上書きする
+          const existing = ws[cell] || {};
+          ws[cell] = { ...existing, t: "s", v: String(outVal), w: String(outVal) };
         }
       }
-      let maxR=0, maxC=0;
-      for (const k of Object.keys(ws)) {
-        if (k.startsWith("!")) continue;
-        const m = k.match(/^([A-Z]+)(\d+)$/); if (!m) continue;
-        const col = m[1].split("").reduce((a,c)=>a*26 + c.charCodeAt(0)-64, 0) - 1;
-        const row = parseInt(m[2],10) - 1;
-        if (col > maxC) maxC = col; if (row > maxR) maxR = row;
-      }
-      ws["!ref"] = XLSX.utils.encode_range({ s:{r:0,c:0}, e:{r:maxR, c:maxC} });
-      const out = XLSX.write(wb, { bookType: "xlsx", type: "array", cellStyles: true });
+      // !ref はテンプレートのものをそのまま使う（再計算すると崩れる場合がある）
+      const out = XLSX.write(wb, { bookType: "xlsx", type: "array" });
       const blob = new Blob([out], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
       const today = new Date();
       const ymd = today.getFullYear() + ("0"+(today.getMonth()+1)).slice(-2) + ("0"+today.getDate()).slice(-2);
