@@ -67,6 +67,7 @@
   .status-bar { position:fixed; bottom:14px; left:14px; right:14px; padding:12px 14px; background:#222; color:#fff; border-radius:8px; font-size:13px; opacity:0; transition:opacity .3s; z-index:100; pointer-events:none; }
   .status-bar.show { opacity:.94; }
   .status-bar.error { background:#c00; }
+  .save-badge { display:inline-block; font-size:11px; font-weight:normal; color:#2a7a2a; background:#e6f7e6; border:1px solid #a8dba8; border-radius:10px; padding:2px 8px; margin-left:8px; vertical-align:middle; }
   .test-banner { background:#dff7e3; color:#0a5d2a; padding:10px 14px; font-size:12px; text-align:center; border-bottom:1px solid #88d39c; }
   .toc { position:sticky; top:48px; background:#fff; border-bottom:1px solid var(--line); padding:8px 14px; z-index:40; overflow-x:auto; white-space:nowrap; }
   .toc a { display:inline-block; padding:6px 12px; background:#f0f3f8; color:#444; border-radius:14px; text-decoration:none; font-size:12px; margin-right:6px; }
@@ -845,8 +846,54 @@ function recomputeAll(id) {
 }
 
 function lsKey(id) { return "form-" + id; }
-function saveLS(id) { try { localStorage.setItem(lsKey(id), JSON.stringify(getValuesForId(id))); } catch(e){} }
-function loadLS(id) { try { const j = localStorage.getItem(lsKey(id)); if (j) setValuesForId(id, JSON.parse(j)); } catch(e){} }
+
+// 保存バッジを更新する
+function updateSaveBadge(id, savedAt) {
+  const sec = document.getElementById("form-" + id);
+  if (!sec) return;
+  const h2 = sec.querySelector("h2");
+  if (!h2) return;
+  let badge = h2.querySelector(".save-badge");
+  if (!badge) {
+    badge = document.createElement("span");
+    badge.className = "save-badge";
+    h2.appendChild(badge);
+  }
+  const t = new Date(savedAt);
+  const hh = String(t.getHours()).padStart(2, "0");
+  const mm = String(t.getMinutes()).padStart(2, "0");
+  badge.textContent = "💾 " + hh + ":" + mm + " 保存済";
+}
+
+// デバウンス用タイマー
+const _saveTimer = {};
+function saveLS(id) {
+  try {
+    const savedAt = new Date().toISOString();
+    const data = { values: getValuesForId(id), savedAt };
+    localStorage.setItem(lsKey(id), JSON.stringify(data));
+    updateSaveBadge(id, savedAt);
+    // デバウンス：最後の入力から500ms後に1度だけステータス表示
+    clearTimeout(_saveTimer[id]);
+    _saveTimer[id] = setTimeout(() => {
+      showStatus("✓ 自動保存しました（" + (META[id]?.title || id) + "）");
+    }, 500);
+  } catch(e) {}
+}
+
+function loadLS(id) {
+  try {
+    const j = localStorage.getItem(lsKey(id));
+    if (!j) return false;
+    const data = JSON.parse(j);
+    // 旧形式（値だけ直接保存）との互換
+    const values = data.values ?? data;
+    const savedAt = data.savedAt ?? null;
+    setValuesForId(id, values);
+    updateSaveBadge(id, savedAt || new Date().toISOString());
+    return savedAt;
+  } catch(e) { return false; }
+}
 
 // 入力変更時：所属するform-sectionから id を取得して保存
 function findSectionId(el) {
@@ -886,6 +933,9 @@ document.querySelectorAll(".reset-btn").forEach((btn) => {
       }
     }
     try { localStorage.removeItem(lsKey(id)); } catch(e){}
+    // バッジも削除
+    const sec = document.getElementById("form-" + id);
+    if (sec) { const b = sec.querySelector(".save-badge"); if (b) b.remove(); }
     showStatus("クリアしました");
   });
 });
@@ -1211,8 +1261,25 @@ function injectStepsLists() {
 }
 injectStepsLists();
 
-// 全フォームの値を復元
-for (const id of Object.keys(FIELDS_BY_ID)) loadLS(id);
+// 全フォームの値を復元し、復元したフォームを通知
+{
+  const restored = [];
+  for (const id of Object.keys(FIELDS_BY_ID)) {
+    const savedAt = loadLS(id);
+    if (savedAt) {
+      const t = new Date(savedAt);
+      const label = META[id]?.title || id;
+      const hh = String(t.getHours()).padStart(2, "0");
+      const mm = String(t.getMinutes()).padStart(2, "0");
+      restored.push(label + "（" + hh + ":" + mm + "）");
+    }
+  }
+  if (restored.length > 0) {
+    setTimeout(() => {
+      showStatus("📂 入力を復元しました：" + restored.join("、"));
+    }, 300);
+  }
+}
 </script>
 </body>
 </html>
