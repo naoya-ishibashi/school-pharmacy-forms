@@ -71,6 +71,13 @@
   .status-bar.show { opacity:.94; }
   .status-bar.error { background:#c00; }
   .save-badge { display:inline-block; font-size:11px; font-weight:normal; color:#2a7a2a; background:#e6f7e6; border:1px solid #a8dba8; border-radius:10px; padding:2px 8px; margin-left:8px; vertical-align:middle; }
+  .chem-table { width:100%; border-collapse:collapse; margin:6px 0; font-size:13px; }
+  .chem-table th { background:#f0f3f8; color:#444; font-size:11px; font-weight:600; padding:5px 4px; text-align:center; border:1px solid #dde3ee; }
+  .chem-table th.chem-name-col { text-align:left; width:90px; }
+  .chem-table td { padding:6px 4px; text-align:center; border:1px solid #eef0f5; vertical-align:middle; }
+  .chem-table td.chem-name { font-weight:600; font-size:12px; text-align:left; background:#f8f9fc; }
+  .chem-table .radios { justify-content:center; gap:4px; }
+  .chem-table .radios label { font-size:12px; padding:4px 7px; }
   .test-banner { background:#dff7e3; color:#0a5d2a; padding:10px 14px; font-size:12px; text-align:center; border-bottom:1px solid #88d39c; }
   .toc { position:sticky; top:48px; background:#fff; border-bottom:1px solid var(--line); padding:8px 14px; z-index:40; overflow-x:auto; white-space:nowrap; }
   .toc a { display:inline-block; padding:6px 12px; background:#f0f3f8; color:#444; border-radius:14px; text-decoration:none; font-size:12px; margin-right:6px; }
@@ -628,30 +635,52 @@
 <div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── プール用薬品 ──</label></div>
 <div class="notes" style="margin:6px 0 10px;"><p style="margin:0;font-size:12px;color:#7a4a00;">塩素剤は湿度や温度によって殺菌効果が低下するので、１シーズンごとに必要な量を購入すること。廃棄に際しては水質汚濁の原因とならないように配慮すること。</p></div>
 <div class="field"><label>管理者（役職・氏名）</label><div><input type="text" name="pool__chem_manager" value="" placeholder="役職・氏名を記入"></div></div>
-<div class="field" style="margin-top:10px;"><label style="font-weight:600;">殺菌消毒剤</label></div>
-<div class="field"><label>　薬品</label><div class="radios"><label><input type="radio" name="pool__chem1_stock" value="有">有</label><label><input type="radio" name="pool__chem1_stock" value="無">無</label></div></div>
-<div class="field"><label>　管理簿</label><div class="radios"><label><input type="radio" name="pool__chem1_ledger" value="有">有</label><label><input type="radio" name="pool__chem1_ledger" value="無">無</label></div></div>
-<div class="field"><label>　保管状況</label><div class="radios"><label><input type="radio" name="pool__chem1_storage" value="良">良</label><label><input type="radio" name="pool__chem1_storage" value="否">否</label></div></div>
-<div class="field"><label>　不要薬品</label><div class="radios"><label><input type="radio" name="pool__chem1_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem1_unnecessary" value="無">無</label></div></div>
-<div class="field"><label>　不明薬品</label><div class="radios"><label><input type="radio" name="pool__chem1_unknown" value="有">有</label><label><input type="radio" name="pool__chem1_unknown" value="無">無</label></div></div>
-<div class="field" style="margin-top:10px;"><label style="font-weight:600;">除藻剤</label></div>
-<div class="field"><label>　薬品</label><div class="radios"><label><input type="radio" name="pool__chem2_stock" value="有">有</label><label><input type="radio" name="pool__chem2_stock" value="無">無</label></div></div>
-<div class="field"><label>　管理簿</label><div class="radios"><label><input type="radio" name="pool__chem2_ledger" value="有">有</label><label><input type="radio" name="pool__chem2_ledger" value="無">無</label></div></div>
-<div class="field"><label>　保管状況</label><div class="radios"><label><input type="radio" name="pool__chem2_storage" value="良">良</label><label><input type="radio" name="pool__chem2_storage" value="否">否</label></div></div>
-<div class="field"><label>　不要薬品</label><div class="radios"><label><input type="radio" name="pool__chem2_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem2_unnecessary" value="無">無</label></div></div>
-<div class="field"><label>　不明薬品</label><div class="radios"><label><input type="radio" name="pool__chem2_unknown" value="有">有</label><label><input type="radio" name="pool__chem2_unknown" value="無">無</label></div></div>
-<div class="field" style="margin-top:10px;"><label style="font-weight:600;">浄化装置薬品</label></div>
-<div class="field"><label>　薬品</label><div class="radios"><label><input type="radio" name="pool__chem3_stock" value="有">有</label><label><input type="radio" name="pool__chem3_stock" value="無">無</label></div></div>
-<div class="field"><label>　管理簿</label><div class="radios"><label><input type="radio" name="pool__chem3_ledger" value="有">有</label><label><input type="radio" name="pool__chem3_ledger" value="無">無</label></div></div>
-<div class="field"><label>　保管状況</label><div class="radios"><label><input type="radio" name="pool__chem3_storage" value="良">良</label><label><input type="radio" name="pool__chem3_storage" value="否">否</label></div></div>
-<div class="field"><label>　不要薬品</label><div class="radios"><label><input type="radio" name="pool__chem3_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem3_unnecessary" value="無">無</label></div></div>
-<div class="field"><label>　不明薬品</label><div class="radios"><label><input type="radio" name="pool__chem3_unknown" value="有">有</label><label><input type="radio" name="pool__chem3_unknown" value="無">無</label></div></div>
-<div class="field" style="margin-top:10px;"><label style="font-weight:600;">検査用試薬</label></div>
-<div class="field"><label>　薬品</label><div class="radios"><label><input type="radio" name="pool__chem4_stock" value="有">有</label><label><input type="radio" name="pool__chem4_stock" value="無">無</label></div></div>
-<div class="field"><label>　管理簿</label><div class="radios"><label><input type="radio" name="pool__chem4_ledger" value="有">有</label><label><input type="radio" name="pool__chem4_ledger" value="無">無</label></div></div>
-<div class="field"><label>　保管状況</label><div class="radios"><label><input type="radio" name="pool__chem4_storage" value="良">良</label><label><input type="radio" name="pool__chem4_storage" value="否">否</label></div></div>
-<div class="field"><label>　不要薬品</label><div class="radios"><label><input type="radio" name="pool__chem4_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem4_unnecessary" value="無">無</label></div></div>
-<div class="field"><label>　不明薬品</label><div class="radios"><label><input type="radio" name="pool__chem4_unknown" value="有">有</label><label><input type="radio" name="pool__chem4_unknown" value="無">無</label></div></div>
+<table class="chem-table">
+  <thead>
+    <tr>
+      <th class="chem-name-col">薬品種別</th>
+      <th>薬品</th>
+      <th>管理簿</th>
+      <th>保管状況</th>
+      <th>不要薬品</th>
+      <th>不明薬品</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="chem-name">殺菌消毒剤</td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem1_stock" value="有">有</label><label><input type="radio" name="pool__chem1_stock" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem1_ledger" value="有">有</label><label><input type="radio" name="pool__chem1_ledger" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem1_storage" value="良">良</label><label><input type="radio" name="pool__chem1_storage" value="否">否</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem1_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem1_unnecessary" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem1_unknown" value="有">有</label><label><input type="radio" name="pool__chem1_unknown" value="無">無</label></div></td>
+    </tr>
+    <tr>
+      <td class="chem-name">除藻剤</td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem2_stock" value="有">有</label><label><input type="radio" name="pool__chem2_stock" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem2_ledger" value="有">有</label><label><input type="radio" name="pool__chem2_ledger" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem2_storage" value="良">良</label><label><input type="radio" name="pool__chem2_storage" value="否">否</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem2_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem2_unnecessary" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem2_unknown" value="有">有</label><label><input type="radio" name="pool__chem2_unknown" value="無">無</label></div></td>
+    </tr>
+    <tr>
+      <td class="chem-name">浄化装置薬品</td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem3_stock" value="有">有</label><label><input type="radio" name="pool__chem3_stock" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem3_ledger" value="有">有</label><label><input type="radio" name="pool__chem3_ledger" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem3_storage" value="良">良</label><label><input type="radio" name="pool__chem3_storage" value="否">否</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem3_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem3_unnecessary" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem3_unknown" value="有">有</label><label><input type="radio" name="pool__chem3_unknown" value="無">無</label></div></td>
+    </tr>
+    <tr>
+      <td class="chem-name">検査用試薬</td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem4_stock" value="有">有</label><label><input type="radio" name="pool__chem4_stock" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem4_ledger" value="有">有</label><label><input type="radio" name="pool__chem4_ledger" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem4_storage" value="良">良</label><label><input type="radio" name="pool__chem4_storage" value="否">否</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem4_unnecessary" value="有">有</label><label><input type="radio" name="pool__chem4_unnecessary" value="無">無</label></div></td>
+      <td><div class="radios"><label><input type="radio" name="pool__chem4_unknown" value="有">有</label><label><input type="radio" name="pool__chem4_unknown" value="無">無</label></div></td>
+    </tr>
+  </tbody>
+</table>
 <div class="field"><label>指導・助言（自由記入）</label><textarea name="pool__advice"></textarea></div>
 <div class="field"><label>備考</label><textarea name="pool__memo"></textarea></div>
 <div class="field computed"><label>（自動）</label><div><input type="text" name="pool__data_dump" readonly></div></div>
