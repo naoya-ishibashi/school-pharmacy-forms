@@ -522,10 +522,13 @@
 <div class="field"><label>　未使用台数</label><div><input type="number" name="water__cooler_not_used" value="" min="0" placeholder="台"> 台</div></div>
 <div class="field"><label>冷水機管理状況（適切に管理されていること、点検記録を確認）</label><div class="radios"><label><input type="radio" name="water__cooler_mng" value="良">良</label><label><input type="radio" name="water__cooler_mng" value="不良">不良</label></div></div>
 <div class="field"><label>未使用の冷水機がある場合（使用不可等の管理がされているか）</label><div class="radios"><label><input type="radio" name="water__cooler_unused" value="良">良</label><label><input type="radio" name="water__cooler_unused" value="不良">不良</label></div></div>
+<div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── 当日の水質検査について ──</label></div>
+<div class="notes" style="margin:6px 0 10px;"><p style="margin:0;font-size:12px;color:#7a4a00;">５分以上水を流して検査を行い、検査項目で以上が見られた場合は他の給水栓で再測定し再検査欄に記入する。</p></div>
 <div class="field"><label>採水場所</label><div><input type="text" name="water__sample_loc" value=""></div></div>
 <div class="field"><label>遊離残留塩素 (mg/L) [基準: 0.1以上]</label><div><input type="number" name="water__chlorine_val" value="" step="0.01"></div></div>
 <div class="field"><label>pH値 [基準: 5.8〜8.6]</label><div><input type="number" name="water__ph_val" value="" step="0.1"></div></div>
 <div class="field"><label>外観・臭気・味</label><div class="radios"><label><input type="radio" name="water__appearance" value="良">良</label><label><input type="radio" name="water__appearance" value="不良">不良</label></div></div>
+<div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── 再検査欄 ──</label></div>
 <div class="field"><label>不良時の備考</label><div><input type="text" name="water__appearance_note" value=""></div></div>
 <div class="field"><label>再:採水場所</label><div><input type="text" name="water__re_loc" value=""></div></div>
 <div class="field"><label>再:遊離残留塩素 (mg/L)</label><div><input type="number" name="water__re_chlorine" value="" step="0.01"></div></div>
