@@ -63,6 +63,9 @@
   .form-actions { display:flex; gap:8px; margin-top:12px; }
   .form-actions button { flex:1; background:var(--primary); color:#fff; border:none; border-radius:6px; padding:12px; font-size:14px; cursor:pointer; font-weight:600; }
   .form-actions button.secondary { background:#888; flex:0 0 90px; }
+  .form-actions button.check-btn { background:#e07b00; flex:0 0 110px; }
+  .field.empty-hl { border-left:3px solid #e07b00; padding-left:8px; background:#fffbe6; border-radius:4px; }
+  .field.empty-hl label { color:#b85c00; }
   .home-link { display:inline-block; padding:8px 14px; background:#eef2f8; color:var(--primary); border-radius:6px; text-decoration:none; font-size:12px; margin-top:8px; }
   .status-bar { position:fixed; bottom:14px; left:14px; right:14px; padding:12px 14px; background:#222; color:#fff; border-radius:8px; font-size:13px; opacity:0; transition:opacity .3s; z-index:100; pointer-events:none; }
   .status-bar.show { opacity:.94; }
@@ -186,6 +189,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="dani">クリア</button>
+    <button type="button" class="check-btn" data-id="dani">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="dani">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -233,6 +237,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="air">クリア</button>
+    <button type="button" class="check-btn" data-id="air">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="air">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -284,6 +289,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="formaldehyde">クリア</button>
+    <button type="button" class="check-btn" data-id="formaldehyde">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="formaldehyde">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -323,6 +329,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="airflow">クリア</button>
+    <button type="button" class="check-btn" data-id="airflow">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="airflow">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -377,6 +384,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="illuminance">クリア</button>
+    <button type="button" class="check-btn" data-id="illuminance">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="illuminance">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -419,6 +427,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="nox_co">クリア</button>
+    <button type="button" class="check-btn" data-id="nox_co">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="nox_co">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -468,6 +477,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="blackboard">クリア</button>
+    <button type="button" class="check-btn" data-id="blackboard">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="blackboard">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -521,6 +531,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="water">クリア</button>
+    <button type="button" class="check-btn" data-id="water">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="water">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -591,6 +602,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="pool">クリア</button>
+    <button type="button" class="check-btn" data-id="pool">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="pool">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -638,6 +650,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="env">クリア</button>
+    <button type="button" class="check-btn" data-id="env">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="env">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -705,6 +718,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="kitchen">クリア</button>
+    <button type="button" class="check-btn" data-id="kitchen">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="kitchen">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -756,6 +770,7 @@
   </form>
   <div class="form-actions">
     <button type="button" class="secondary reset-btn" data-id="drug">クリア</button>
+    <button type="button" class="check-btn" data-id="drug">🔍 未入力確認</button>
     <button type="button" class="export-btn" data-id="drug">📥 エクセル出力</button>
   </div>
   <a class="home-link" href="#home">↑ ホームに戻る</a>
@@ -947,6 +962,70 @@ document.addEventListener("change", (e) => {
   }
 });
 
+// ── 未入力ハイライト ──
+function isFieldEmpty(id, f) {
+  if (f.type === "computed" || f.type === "checkbox") return false;
+  const els = document.getElementsByName(nameOf(id, f.key));
+  if (!els || els.length === 0) return false;
+  if (f.type === "radio") {
+    return ![...els].some(e => e.checked);
+  }
+  return (els[0].value || "").trim() === "";
+}
+
+function applyEmptyHL(id) {
+  const sec = document.getElementById("form-" + id);
+  if (!sec) return 0;
+  const fields = FIELDS_BY_ID[id] || [];
+  let count = 0;
+  for (const f of fields) {
+    if (f.type === "computed" || f.type === "checkbox") continue;
+    const els = document.getElementsByName(nameOf(id, f.key));
+    if (!els || els.length === 0) continue;
+    // フィールドのラベル要素を含む .field を特定
+    const el = els[0];
+    const fieldDiv = el.closest(".field");
+    if (!fieldDiv) continue;
+    const empty = isFieldEmpty(id, f);
+    fieldDiv.classList.toggle("empty-hl", empty);
+    if (empty) count++;
+  }
+  return count;
+}
+
+function clearEmptyHL(id) {
+  const sec = document.getElementById("form-" + id);
+  if (!sec) return;
+  sec.querySelectorAll(".field.empty-hl").forEach(el => el.classList.remove("empty-hl"));
+}
+
+// 未入力確認ボタン
+document.querySelectorAll(".check-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.id;
+    const count = applyEmptyHL(id);
+    if (count === 0) {
+      showStatus("✅ すべて入力済みです（" + (META[id]?.title || id) + "）");
+    } else {
+      showStatus("⚠ " + count + " 項目が未入力です（オレンジ色の項目を確認してください）", true);
+    }
+  });
+});
+
+// 入力時：そのフィールドのハイライトを解除
+document.addEventListener("input", (e) => {
+  const fieldDiv = e.target.closest && e.target.closest(".field");
+  if (fieldDiv && fieldDiv.classList.contains("empty-hl")) {
+    if ((e.target.value || "").trim() !== "") fieldDiv.classList.remove("empty-hl");
+  }
+});
+document.addEventListener("change", (e) => {
+  const fieldDiv = e.target.closest && e.target.closest(".field");
+  if (fieldDiv && fieldDiv.classList.contains("empty-hl")) {
+    fieldDiv.classList.remove("empty-hl");
+  }
+});
+
 // クリア
 document.querySelectorAll(".reset-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -965,6 +1044,7 @@ document.querySelectorAll(".reset-btn").forEach((btn) => {
     // バッジも削除
     const sec = document.getElementById("form-" + id);
     if (sec) { const b = sec.querySelector(".save-badge"); if (b) b.remove(); }
+    clearEmptyHL(id);
     showStatus("クリアしました");
   });
 });
