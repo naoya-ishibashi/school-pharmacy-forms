@@ -735,31 +735,32 @@
 <div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── ネズミ、衛生害虫等の生息状況 ──</label></div>
 <div class="field" style="margin-top:8px;"><label style="font-weight:600;">ネズミ</label></div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
-  <div class="field" style="flex:1; min-width:130px;"><label>穴・糞・毛</label><div class="radios"><label><input type="radio" name="env__rat1" value="適">適</label><label><input type="radio" name="env__rat1" value="不適">不適</label></div></div>
-  <div class="field" style="flex:1; min-width:130px;"><label>壁面・食害</label><div class="radios"><label><input type="radio" name="env__rat2" value="適">適</label><label><input type="radio" name="env__rat2" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>穴・糞・毛</label><div class="hint">倉庫、厨芥置き場等に出入りする穴、糞、毛等は認められない。</div><div class="radios"><label><input type="radio" name="env__rat1" value="適">適</label><label><input type="radio" name="env__rat1" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>壁面・食害</label><div class="hint">壁面に痕跡。食料を保管または取り扱う場所での食害は認められない。</div><div class="radios"><label><input type="radio" name="env__rat2" value="適">適</label><label><input type="radio" name="env__rat2" value="不適">不適</label></div></div>
 </div>
 <div class="field" style="margin-top:8px;"><label style="font-weight:600;">ゴキブリ</label></div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
-  <div class="field" style="flex:1; min-width:130px;"><label>ゴキブリ</label><div class="radios"><label><input type="radio" name="env__cockroach" value="適">適</label><label><input type="radio" name="env__cockroach" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>ゴキブリ</label><div class="hint">倉庫、仲介置き場及び教室等の戸棚及び引き出し等の中に成虫、幼虫、糞、抜け殻、卵鞘等は認められない。</div><div class="radios"><label><input type="radio" name="env__cockroach" value="適">適</label><label><input type="radio" name="env__cockroach" value="不適">不適</label></div></div>
 </div>
 <div class="field" style="margin-top:8px;"><label style="font-weight:600;">蚊</label></div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
-  <div class="field" style="flex:1; min-width:130px;"><label>成虫</label><div class="radios"><label><input type="radio" name="env__mosquito1" value="適">適</label><label><input type="radio" name="env__mosquito1" value="不適">不適</label></div></div>
-  <div class="field" style="flex:1; min-width:130px;"><label>幼虫（ボウフラ）</label><div class="radios"><label><input type="radio" name="env__mosquito2" value="適">適</label><label><input type="radio" name="env__mosquito2" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>成虫</label><div class="hint">成虫の吸血活動、部屋の壁への係留は認められない。</div><div class="radios"><label><input type="radio" name="env__mosquito1" value="適">適</label><label><input type="radio" name="env__mosquito1" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>幼虫（ボウフラ）</label><div class="hint">防火用水槽、池、水たまり、下水等で幼虫（ぼうふら）の発生は認められない。</div><div class="radios"><label><input type="radio" name="env__mosquito2" value="適">適</label><label><input type="radio" name="env__mosquito2" value="不適">不適</label></div></div>
 </div>
 <div class="field" style="margin-top:8px;"><label style="font-weight:600;">ハエ</label></div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
-  <div class="field" style="flex:1; min-width:130px;"><label>幼虫</label><div class="radios"><label><input type="radio" name="env__fly1" value="適">適</label><label><input type="radio" name="env__fly1" value="不適">不適</label></div></div>
-  <div class="field" style="flex:1; min-width:130px;"><label>成虫</label><div class="radios"><label><input type="radio" name="env__fly2" value="適">適</label><label><input type="radio" name="env__fly2" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>幼虫</label><div class="hint">仲介置き場、飼育動物施設等に幼虫の発生は認められない。</div><div class="radios"><label><input type="radio" name="env__fly1" value="適">適</label><label><input type="radio" name="env__fly1" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>成虫</label><div class="hint">教室等で成虫の活動、係留は認められない。</div><div class="radios"><label><input type="radio" name="env__fly2" value="適">適</label><label><input type="radio" name="env__fly2" value="不適">不適</label></div></div>
 </div>
 <div class="field" style="margin-top:8px;"><label style="font-weight:600;">樹木害虫等</label></div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
-  <div class="field" style="flex:1; min-width:130px;"><label>樹木害虫等</label><div class="radios"><label><input type="radio" name="env__tree_bug" value="適">適</label><label><input type="radio" name="env__tree_bug" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>樹木害虫等</label><div class="hint">樹木等に病害虫の幼虫は認められない。</div><div class="radios"><label><input type="radio" name="env__tree_bug" value="適">適</label><label><input type="radio" name="env__tree_bug" value="不適">不適</label></div></div>
 </div>
+<div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── ネズミ衛生害虫等の発生が見られた場合は下記を記入 ──</label></div>
 <div class="field"><label>害虫等が発生した場合 名称</label><div><input type="text" name="env__pest_name" value=""></div></div>
 <div class="field"><label>発生場所</label><div><input type="text" name="env__pest_loc" value=""></div></div>
 <div class="field"><label>発生時期</label><div><input type="text" name="env__pest_time" value=""></div></div>
-<div class="field"><label>適切に駆除済か</label><div class="radios"><label><input type="radio" name="env__pest_clean" value="適">適</label><label><input type="radio" name="env__pest_clean" value="不適">不適</label></div></div>
+<div class="field"><label>適切に駆除済か</label><div class="hint">園児等や周辺住民の健康及び周辺環境に影響がない方法で駆除されたかどうか確認</div><div class="radios"><label><input type="radio" name="env__pest_clean" value="適">適</label><label><input type="radio" name="env__pest_clean" value="不適">不適</label></div></div>
 <div class="field"><label>指導・助言</label><textarea name="env__advice"></textarea></div>
   </form>
   <div class="form-actions">
