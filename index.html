@@ -732,14 +732,30 @@
   <div class="field" style="flex:1; min-width:130px;"><label>排水状況（目視）</label><div class="radios"><label><input type="radio" name="env__sewage_visual" value="適">適</label><label><input type="radio" name="env__sewage_visual" value="不適">不適</label></div></div>
   <div class="field" style="flex:1; min-width:130px;"><label>保守点検記録</label><div class="radios"><label><input type="radio" name="env__sewage_record" value="有">有</label><label><input type="radio" name="env__sewage_record" value="無">無</label></div></div>
 </div>
-<div class="field"><label>ネズミ:穴・糞・毛</label><div class="radios"><label><input type="radio" name="env__rat1" value="適">適</label><label><input type="radio" name="env__rat1" value="不適">不適</label></div></div>
-<div class="field"><label>ネズミ:壁面・食害</label><div class="radios"><label><input type="radio" name="env__rat2" value="適">適</label><label><input type="radio" name="env__rat2" value="不適">不適</label></div></div>
-<div class="field"><label>ゴキブリ</label><div class="radios"><label><input type="radio" name="env__cockroach" value="適">適</label><label><input type="radio" name="env__cockroach" value="不適">不適</label></div></div>
-<div class="field"><label>蚊:成虫</label><div class="radios"><label><input type="radio" name="env__mosquito1" value="適">適</label><label><input type="radio" name="env__mosquito1" value="不適">不適</label></div></div>
-<div class="field"><label>蚊:幼虫(ボウフラ)</label><div class="radios"><label><input type="radio" name="env__mosquito2" value="適">適</label><label><input type="radio" name="env__mosquito2" value="不適">不適</label></div></div>
-<div class="field"><label>ハエ:幼虫</label><div class="radios"><label><input type="radio" name="env__fly1" value="適">適</label><label><input type="radio" name="env__fly1" value="不適">不適</label></div></div>
-<div class="field"><label>ハエ:成虫</label><div class="radios"><label><input type="radio" name="env__fly2" value="適">適</label><label><input type="radio" name="env__fly2" value="不適">不適</label></div></div>
-<div class="field"><label>樹木害虫等</label><div class="radios"><label><input type="radio" name="env__tree_bug" value="適">適</label><label><input type="radio" name="env__tree_bug" value="不適">不適</label></div></div>
+<div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── ネズミ、衛生害虫等の生息状況 ──</label></div>
+<div class="field" style="margin-top:8px;"><label style="font-weight:600;">ネズミ</label></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>穴・糞・毛</label><div class="radios"><label><input type="radio" name="env__rat1" value="適">適</label><label><input type="radio" name="env__rat1" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>壁面・食害</label><div class="radios"><label><input type="radio" name="env__rat2" value="適">適</label><label><input type="radio" name="env__rat2" value="不適">不適</label></div></div>
+</div>
+<div class="field" style="margin-top:8px;"><label style="font-weight:600;">ゴキブリ</label></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>ゴキブリ</label><div class="radios"><label><input type="radio" name="env__cockroach" value="適">適</label><label><input type="radio" name="env__cockroach" value="不適">不適</label></div></div>
+</div>
+<div class="field" style="margin-top:8px;"><label style="font-weight:600;">蚊</label></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>成虫</label><div class="radios"><label><input type="radio" name="env__mosquito1" value="適">適</label><label><input type="radio" name="env__mosquito1" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>幼虫（ボウフラ）</label><div class="radios"><label><input type="radio" name="env__mosquito2" value="適">適</label><label><input type="radio" name="env__mosquito2" value="不適">不適</label></div></div>
+</div>
+<div class="field" style="margin-top:8px;"><label style="font-weight:600;">ハエ</label></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>幼虫</label><div class="radios"><label><input type="radio" name="env__fly1" value="適">適</label><label><input type="radio" name="env__fly1" value="不適">不適</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>成虫</label><div class="radios"><label><input type="radio" name="env__fly2" value="適">適</label><label><input type="radio" name="env__fly2" value="不適">不適</label></div></div>
+</div>
+<div class="field" style="margin-top:8px;"><label style="font-weight:600;">樹木害虫等</label></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>樹木害虫等</label><div class="radios"><label><input type="radio" name="env__tree_bug" value="適">適</label><label><input type="radio" name="env__tree_bug" value="不適">不適</label></div></div>
+</div>
 <div class="field"><label>害虫等が発生した場合 名称</label><div><input type="text" name="env__pest_name" value=""></div></div>
 <div class="field"><label>発生場所</label><div><input type="text" name="env__pest_loc" value=""></div></div>
 <div class="field"><label>発生時期</label><div><input type="text" name="env__pest_time" value=""></div></div>
