@@ -289,15 +289,6 @@
         <li>⑨ STARTボタンを押して<strong>30分間放置</strong>（退室可）→ブザー音で測定結果が表示される</li>
     </ul>
   </div>
-  <div class="notes">
-    <h3>🔄 再検査手順（基準値オーバーの場合）</h3>
-    <ul>
-        <li>① 検知器はそのまま設置し（電源は切る）、窓等を開放して<strong>10分間程度換気</strong>する</li>
-        <li>② 再度、本検査と同様に電源を入れ、再検査用TABをセットして検査を行う</li>
-        <li>③ 30分後、検査終了を確認し、検査結果・温度・湿度を記録する</li>
-        <li style="color:#b85c00;">※ 再度基準値オーバーの場合は、換気方法・換気時間の検討と助言を行う</li>
-    </ul>
-  </div>
   <form>
     <div class="field"><label>園名</label><div><input type="text" name="formaldehyde__park_name" value="まがた保育園"></div></div>
 <div class="field"><label>園No.</label><div><input type="text" name="formaldehyde__park_no" value=""></div></div>
@@ -315,6 +306,15 @@
 <div class="field"><label>測定結果（μg/m³）</label><div><input type="number" name="formaldehyde__ugm3" value="" step="0.1"></div></div>
 <div class="field computed"><label>（自動）</label><div><input type="text" name="formaldehyde__result_combo" readonly></div></div>
 <div class="field"><label>判定</label><div class="radios"><label><input type="radio" name="formaldehyde__judge" value="基準値以下">基準値以下</label><label><input type="radio" name="formaldehyde__judge" value="基準値オーバー">基準値オーバー</label></div></div>
+<div class="notes" style="margin:8px 0;">
+    <h3>🔄 再検査手順（基準値オーバーの場合）</h3>
+    <ul>
+        <li>① 検知器はそのまま設置し（電源は切る）、窓等を開放して<strong>10分間程度換気</strong>する</li>
+        <li>② 再度、本検査と同様に電源を入れ、再検査用TABをセットして検査を行う</li>
+        <li>③ 30分後、検査終了を確認し、検査結果・温度・湿度を記録する</li>
+        <li style="color:#b85c00;">※ 再度基準値オーバーの場合は、換気方法・換気時間の検討と助言を行う</li>
+    </ul>
+  </div>
 <div class="field"><label>再:開放時間（分、10分以上）</label><div><input type="number" name="formaldehyde__re_open_min" value=""></div></div>
 <div class="field"><label>再:検査開始日時</label><div><input type="datetime-local" name="formaldehyde__re_start_dt" value=""></div></div>
 <div class="field"><label>再:温度（℃）</label><div><input type="number" name="formaldehyde__re_temp" value="" step="0.1"></div></div>
