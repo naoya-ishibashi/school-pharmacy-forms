@@ -614,8 +614,10 @@
 <div class="field"><label>検査日時</label><div><input type="datetime-local" name="blackboard__datetime" value=""></div></div>
 <div class="field"><label>天候</label><div class="radios"><label><input type="radio" name="blackboard__weather" value="晴">晴</label><label><input type="radio" name="blackboard__weather" value="曇">曇</label><label><input type="radio" name="blackboard__weather" value="雨">雨</label></div></div>
 <div class="field"><label>教室名</label><div><input type="text" name="blackboard__room" value=""></div></div>
-<div class="field"><label>日常点検</label><div class="radios"><label><input type="radio" name="blackboard__daily_check" value="有">有</label><label><input type="radio" name="blackboard__daily_check" value="無">無</label></div></div>
-<div class="field"><label>日常点検記録</label><div class="radios"><label><input type="radio" name="blackboard__daily_record" value="適">適</label><label><input type="radio" name="blackboard__daily_record" value="不適">不適</label></div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>日常点検</label><div class="radios"><label><input type="radio" name="blackboard__daily_check" value="有">有</label><label><input type="radio" name="blackboard__daily_check" value="無">無</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>日常点検記録</label><div class="radios"><label><input type="radio" name="blackboard__daily_record" value="適">適</label><label><input type="radio" name="blackboard__daily_record" value="不適">不適</label></div></div>
+</div>
 <div class="field"><label>①判定</label><div class="radios"><label><input type="radio" name="blackboard__j1" value="適">適</label><label><input type="radio" name="blackboard__j1" value="不適">不適</label></div></div>
 <div class="field"><label>②判定</label><div class="radios"><label><input type="radio" name="blackboard__j2" value="適">適</label><label><input type="radio" name="blackboard__j2" value="不適">不適</label></div></div>
 <div class="field"><label>③判定</label><div class="radios"><label><input type="radio" name="blackboard__j3" value="適">適</label><label><input type="radio" name="blackboard__j3" value="不適">不適</label></div></div>
