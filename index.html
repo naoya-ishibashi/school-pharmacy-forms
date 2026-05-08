@@ -164,8 +164,10 @@
 <div class="field"><label>検査実施者（薬剤師以外の場合）</label><div><input type="text" name="dani__inspector" value=""></div></div>
 <div class="field"><label>検査日時</label><div><input type="datetime-local" name="dani__datetime" value=""></div></div>
 <div class="field"><label>天候</label><div class="radios"><label><input type="radio" name="dani__weather" value="晴">晴</label><label><input type="radio" name="dani__weather" value="曇">曇</label><label><input type="radio" name="dani__weather" value="雨">雨</label></div></div>
-<div class="field"><label>保健室専用の掃除機</label><div class="radios"><label><input type="radio" name="dani__vac_health" value="あり">あり</label><label><input type="radio" name="dani__vac_health" value="なし">なし</label></div></div>
-<div class="field"><label>ありの場合 使用年数</label><div><input type="number" name="dani__vac_years" value=""></div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:160px;"><label>保健室専用の掃除機</label><div class="radios"><label><input type="radio" name="dani__vac_health" value="あり">あり</label><label><input type="radio" name="dani__vac_health" value="なし">なし</label></div></div>
+  <div class="field" style="flex:1; min-width:120px;"><label>ありの場合 使用年数</label><div><input type="number" name="dani__vac_years" value=""> 年</div></div>
+</div>
 <div class="field"><label>寝具専用の掃除機またはヘッド</label><div class="radios"><label><input type="radio" name="dani__vac_bed" value="あり">あり</label><label><input type="radio" name="dani__vac_bed" value="なし">なし</label></div></div>
 <div class="field"><label>測定場所1</label><div><input type="text" name="dani__loc1" value="保健室"></div></div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
