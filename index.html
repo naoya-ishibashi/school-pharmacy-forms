@@ -762,8 +762,10 @@
 </div>
 <div class="field"><label>プール周辺に土・砂・雑草等の汚染源はあるか</label><div class="radios"><label><input type="radio" name="pool__contamination" value="有">有</label><label><input type="radio" name="pool__contamination" value="無">無</label></div></div>
 <div class="field"><label>　有の場合（内容）</label><div><input type="text" name="pool__contamination_detail" value="" placeholder="汚染源の内容を記入"></div></div>
-<div class="field"><label>排水溝の蓋の固定（排水栓がない場合は記載不要）</label><div class="radios"><label><input type="radio" name="pool__drain_cover" value="固定良">固定良</label><label><input type="radio" name="pool__drain_cover" value="固定否">固定否</label></div></div>
-<div class="field"><label>排水溝の確認記録（排水栓がない場合は記載不要）</label><div class="radios"><label><input type="radio" name="pool__drain_record" value="記録有">記録有</label><label><input type="radio" name="pool__drain_record" value="記録無">記録無</label></div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:160px;"><label>排水溝の蓋の固定（排水栓がない場合は記載不要）</label><div class="radios"><label><input type="radio" name="pool__drain_cover" value="固定良">固定良</label><label><input type="radio" name="pool__drain_cover" value="固定否">固定否</label></div></div>
+  <div class="field" style="flex:1; min-width:160px;"><label>排水溝の確認記録（排水栓がない場合は記載不要）</label><div class="radios"><label><input type="radio" name="pool__drain_record" value="記録有">記録有</label><label><input type="radio" name="pool__drain_record" value="記録無">記録無</label></div></div>
+</div>
 <div class="field"><label>給排水の図面の有無（簡易プールは不要）</label><div class="radios"><label><input type="radio" name="pool__blueprint" value="有">有</label><label><input type="radio" name="pool__blueprint" value="無">無</label><label><input type="radio" name="pool__blueprint" value="不要">不要</label></div></div>
 <div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── 日常点検 ──</label></div>
 <div class="field"><label>遊離残留塩素の測定（基準：朝と毎授業ごと）</label><div class="radios"><label><input type="radio" name="pool__cl_measure" value="１器具なし">１器具なし</label><label><input type="radio" name="pool__cl_measure" value="２朝のみ">２朝のみ</label><label><input type="radio" name="pool__cl_measure" value="３朝と授業ごと">３朝と授業ごと</label><label><input type="radio" name="pool__cl_measure" value="４その他">４その他</label><label><input type="radio" name="pool__cl_measure" value="５していない">５していない</label></div></div>
