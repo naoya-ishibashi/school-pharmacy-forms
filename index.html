@@ -428,7 +428,9 @@
   <div class="field" style="flex:2; min-width:160px;"><label>エアコン設置箇所</label><div><input type="text" name="airflow__ac_loc1" value=""></div></div>
   <div class="field" style="flex:1; min-width:110px;"><label>エアコン設置台数</label><div><input type="number" name="airflow__ac_count1" value=""></div></div>
 </div>
+<div class="field" style="margin-top:12px;"><label style="font-weight:700;color:var(--primary);">── 気流検査 ──</label></div>
 <div class="field"><label>気流測定結果（m/秒）</label><div><input type="number" name="airflow__airflow_val" value="" step="0.01"></div><div class="hint">基準：0.5m/sec以下であることが望ましい</div></div>
+<div class="field" style="margin-top:12px;"><label style="font-weight:700;color:var(--primary);">── 粉塵測定 ──</label></div>
 <div class="field"><label>粉じん測定結果（mg/m³）</label><div><input type="number" name="airflow__dust_val" value="" step="0.001"></div><div class="hint">基準：0.01mg/m³以下であること</div></div>
 <div class="field"><label>粉じん検査省略</label><div class="radios"><label><input type="radio" name="airflow__skip_dust" value="□省略">未</label><label><input type="radio" name="airflow__skip_dust" value="☑省略">有</label></div></div>
 <div class="field"><label>指導・助言</label><textarea name="airflow__advice"></textarea></div>
