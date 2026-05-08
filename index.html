@@ -447,25 +447,31 @@
 <div class="field"><label>検査日時</label><div><input type="datetime-local" name="illuminance__datetime" value=""></div></div>
 <div class="field"><label>天候</label><div class="radios"><label><input type="radio" name="illuminance__weather" value="晴">晴</label><label><input type="radio" name="illuminance__weather" value="曇">曇</label><label><input type="radio" name="illuminance__weather" value="雨">雨</label></div></div>
 <div class="field"><label>教室名</label><div><input type="text" name="illuminance__room" value=""></div></div>
-<div class="field"><label>日常点検</label><div class="radios"><label><input type="radio" name="illuminance__daily_check" value="有">有</label><label><input type="radio" name="illuminance__daily_check" value="無">無</label></div></div>
-<div class="field"><label>日常点検記録</label><div class="radios"><label><input type="radio" name="illuminance__daily_record" value="適">適</label><label><input type="radio" name="illuminance__daily_record" value="不適">不適</label></div></div>
-<div class="field"><label>カーテン等の有無</label><div class="radios"><label><input type="radio" name="illuminance__curtain" value="有">有</label><label><input type="radio" name="illuminance__curtain" value="無">無</label></div></div>
-<div class="field"><label>カーテン整備</label><div class="radios"><label><input type="radio" name="illuminance__curtain_state" value="良">良</label><label><input type="radio" name="illuminance__curtain_state" value="否">否</label></div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>日常点検</label><div class="radios"><label><input type="radio" name="illuminance__daily_check" value="有">有</label><label><input type="radio" name="illuminance__daily_check" value="無">無</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>日常点検記録</label><div class="radios"><label><input type="radio" name="illuminance__daily_record" value="適">適</label><label><input type="radio" name="illuminance__daily_record" value="不適">不適</label></div></div>
+</div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>カーテン等の有無</label><div class="radios"><label><input type="radio" name="illuminance__curtain" value="有">有</label><label><input type="radio" name="illuminance__curtain" value="無">無</label></div></div>
+  <div class="field" style="flex:1; min-width:130px;"><label>カーテン整備</label><div class="radios"><label><input type="radio" name="illuminance__curtain_state" value="良">良</label><label><input type="radio" name="illuminance__curtain_state" value="否">否</label></div></div>
+</div>
 <div class="field"><label>縦列毎独立スイッチ</label><div class="radios"><label><input type="radio" name="illuminance__switch" value="良">良</label><label><input type="radio" name="illuminance__switch" value="否">否</label></div></div>
 <div class="field"><label>まぶしさ妨害光源</label><div class="radios"><label><input type="radio" name="illuminance__glare" value="無">無</label><label><input type="radio" name="illuminance__glare" value="有">有</label></div></div>
 <div class="field"><label>採光妨害掲示物</label><div class="radios"><label><input type="radio" name="illuminance__obstruct" value="無">無</label><label><input type="radio" name="illuminance__obstruct" value="有">有</label></div></div>
 <div class="field"><label>LED灯</label><div class="radios"><label><input type="radio" name="illuminance__led" value="全部">全部</label><label><input type="radio" name="illuminance__led" value="一部">一部</label><label><input type="radio" name="illuminance__led" value="無">無</label></div></div>
 <div class="field"><label>照明灯色の統一</label><div class="radios"><label><input type="radio" name="illuminance__color" value="良">良</label><label><input type="radio" name="illuminance__color" value="否">否</label></div></div>
 <div class="field"><label>照明器具清掃（回/年）</label><div><input type="number" name="illuminance__clean_freq" value=""></div></div>
-<div class="field"><label>①園庭側 上 (lx)</label><div><input type="number" name="illuminance__lux1" value=""></div></div>
-<div class="field"><label>②園庭側 中 (lx)</label><div><input type="number" name="illuminance__lux2" value=""></div></div>
-<div class="field"><label>③園庭側 下 (lx)</label><div><input type="number" name="illuminance__lux3" value=""></div></div>
-<div class="field"><label>④中央 上 (lx)</label><div><input type="number" name="illuminance__lux4" value=""></div></div>
-<div class="field"><label>⑤中央 中 (lx)</label><div><input type="number" name="illuminance__lux5" value=""></div></div>
-<div class="field"><label>⑥中央 下 (lx)</label><div><input type="number" name="illuminance__lux6" value=""></div></div>
-<div class="field"><label>⑦廊下側 上 (lx)</label><div><input type="number" name="illuminance__lux7" value=""></div></div>
-<div class="field"><label>⑧廊下側 中 (lx)</label><div><input type="number" name="illuminance__lux8" value=""></div></div>
-<div class="field"><label>⑨廊下側 下 (lx)</label><div><input type="number" name="illuminance__lux9" value=""></div></div>
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:4px 0;">
+  <div class="field"><label>①園庭側 上 (lx)</label><div><input type="number" name="illuminance__lux1" value=""></div></div>
+  <div class="field"><label>④中央 上 (lx)</label><div><input type="number" name="illuminance__lux4" value=""></div></div>
+  <div class="field"><label>⑦廊下側 上 (lx)</label><div><input type="number" name="illuminance__lux7" value=""></div></div>
+  <div class="field"><label>②園庭側 中 (lx)</label><div><input type="number" name="illuminance__lux2" value=""></div></div>
+  <div class="field"><label>⑤中央 中 (lx)</label><div><input type="number" name="illuminance__lux5" value=""></div></div>
+  <div class="field"><label>⑧廊下側 中 (lx)</label><div><input type="number" name="illuminance__lux8" value=""></div></div>
+  <div class="field"><label>③園庭側 下 (lx)</label><div><input type="number" name="illuminance__lux3" value=""></div></div>
+  <div class="field"><label>⑥中央 下 (lx)</label><div><input type="number" name="illuminance__lux6" value=""></div></div>
+  <div class="field"><label>⑨廊下側 下 (lx)</label><div><input type="number" name="illuminance__lux9" value=""></div></div>
+</div>
 <div class="field"><label>指導・助言</label><textarea name="illuminance__advice"></textarea></div>
   </form>
   <div class="form-actions">
