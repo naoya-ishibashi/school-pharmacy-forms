@@ -255,8 +255,8 @@
   <div class="field" style="flex:1; min-width:160px;"><label>臭気（外部入室時の不快臭）</label><div class="radios"><label><input type="radio" name="air__smell" value="無">無</label><label><input type="radio" name="air__smell" value="有">有</label></div></div>
 </div>
 <div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
-  <div class="field" style="flex:1; min-width:120px;"><label>温度（℃）</label><div><input type="number" name="air__temp" value="" step="0.1"></div></div>
-  <div class="field" style="flex:1; min-width:120px;"><label>湿度（%）</label><div><input type="number" name="air__humid" value="" step="0.1"></div></div>
+  <div class="field" style="flex:1; min-width:120px;"><label>温度（℃）</label><div><input type="number" name="air__temp" value="" step="0.1"></div><div class="hint">冬季：18℃以上、夏季：28℃以下（最も望ましい温度：冬季18〜20℃、夏季25〜28℃）</div></div>
+  <div class="field" style="flex:1; min-width:120px;"><label>湿度（%）</label><div><input type="number" name="air__humid" value="" step="0.1"></div><div class="hint">30〜80%</div></div>
 </div>
 <div class="field"><label>CO₂測定1回目（ppm）</label><div><input type="number" name="air__co2_1" value=""></div><div class="hint">授業終了5分前を測定：100mL約2分間吸引　基準：1500ppm以下（0.15%）</div></div>
 <div class="field"><label>CO₂再測定（換気10分後 ppm）</label><div><input type="number" name="air__co2_2" value=""></div><div class="hint">基準オーバー時、10分換気して再検査　基準：1500ppm以下（0.15%）</div></div>
