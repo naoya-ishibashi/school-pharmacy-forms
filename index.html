@@ -529,8 +529,10 @@
   <div class="field" style="flex:1; min-width:160px;"><label>学校薬剤師No.</label><div><input type="text" name="nox_co__ph_no" value=""></div></div>
 </div>
 <div class="field"><label>検査日時</label><div><input type="datetime-local" name="nox_co__datetime" value=""></div></div>
-<div class="field"><label>外気温度(℃)</label><div><input type="number" name="nox_co__out_temp" value="" step="0.1"></div></div>
-<div class="field"><label>外気湿度(%)</label><div><input type="number" name="nox_co__out_humid" value="" step="0.1"></div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:120px;"><label>外気温度(℃)</label><div><input type="number" name="nox_co__out_temp" value="" step="0.1"></div></div>
+  <div class="field" style="flex:1; min-width:120px;"><label>外気湿度(%)</label><div><input type="number" name="nox_co__out_humid" value="" step="0.1"></div></div>
+</div>
 <div class="field computed"><label>（自動）</label><div><input type="text" name="nox_co__out_th" readonly></div></div>
 <div class="field"><label>測定教室</label><div><input type="text" name="nox_co__room" value=""></div></div>
 <div class="field"><label>NO₂測定結果（ppm）</label><div><input type="number" name="nox_co__no2_ppm" value="" step="0.001"></div></div>
