@@ -455,10 +455,14 @@
   <div class="field" style="flex:1; min-width:130px;"><label>カーテン等の有無</label><div class="radios"><label><input type="radio" name="illuminance__curtain" value="有">有</label><label><input type="radio" name="illuminance__curtain" value="無">無</label></div></div>
   <div class="field" style="flex:1; min-width:130px;"><label>カーテン整備</label><div class="radios"><label><input type="radio" name="illuminance__curtain_state" value="良">良</label><label><input type="radio" name="illuminance__curtain_state" value="否">否</label></div></div>
 </div>
-<div class="field"><label>縦列毎独立スイッチ</label><div class="radios"><label><input type="radio" name="illuminance__switch" value="良">良</label><label><input type="radio" name="illuminance__switch" value="否">否</label></div></div>
-<div class="field"><label>まぶしさ妨害光源</label><div class="radios"><label><input type="radio" name="illuminance__glare" value="無">無</label><label><input type="radio" name="illuminance__glare" value="有">有</label></div></div>
-<div class="field"><label>採光妨害掲示物</label><div class="radios"><label><input type="radio" name="illuminance__obstruct" value="無">無</label><label><input type="radio" name="illuminance__obstruct" value="有">有</label></div></div>
-<div class="field"><label>LED灯</label><div class="radios"><label><input type="radio" name="illuminance__led" value="全部">全部</label><label><input type="radio" name="illuminance__led" value="一部">一部</label><label><input type="radio" name="illuminance__led" value="無">無</label></div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>縦列毎独立スイッチ</label><div class="radios"><label><input type="radio" name="illuminance__switch" value="良">良</label><label><input type="radio" name="illuminance__switch" value="否">否</label></div></div>
+  <div class="field" style="flex:1; min-width:140px;"><label>まぶしさ妨害光源</label><div class="radios"><label><input type="radio" name="illuminance__glare" value="無">無</label><label><input type="radio" name="illuminance__glare" value="有">有</label></div></div>
+</div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:130px;"><label>採光妨害掲示物</label><div class="radios"><label><input type="radio" name="illuminance__obstruct" value="無">無</label><label><input type="radio" name="illuminance__obstruct" value="有">有</label></div></div>
+  <div class="field" style="flex:1; min-width:160px;"><label>LED灯</label><div class="radios"><label><input type="radio" name="illuminance__led" value="全部">全部</label><label><input type="radio" name="illuminance__led" value="一部">一部</label><label><input type="radio" name="illuminance__led" value="無">無</label></div></div>
+</div>
 <div class="field"><label>照明灯色の統一</label><div class="radios"><label><input type="radio" name="illuminance__color" value="良">良</label><label><input type="radio" name="illuminance__color" value="否">否</label></div></div>
 <div class="field"><label>照明器具清掃（回/年）</label><div><input type="number" name="illuminance__clean_freq" value=""></div></div>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:4px 0;">
