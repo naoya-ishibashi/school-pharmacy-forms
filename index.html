@@ -692,9 +692,11 @@
 <div class="field"><label>故障等（給水管の亀裂やパッキン等の消耗による水漏れ等故障がないこと）</label><div class="radios"><label><input type="radio" name="water__fault" value="良">良</label><label><input type="radio" name="water__fault" value="不良">不良</label></div></div>
 <div class="field"><label>清潔状況（排水は良好で、清掃がよく行われ、清潔で安全な状態であること）</label><div class="radios"><label><input type="radio" name="water__clean" value="良">良</label><label><input type="radio" name="water__clean" value="不良">不良</label></div></div>
 <div class="field" style="margin-top:12px;"><label style="font-weight:700;color:var(--primary);">── 冷水器 ──</label></div>
-<div class="field"><label>冷水機の設置</label><div class="radios"><label><input type="radio" name="water__cooler_installed" value="有">有</label><label><input type="radio" name="water__cooler_installed" value="無">無</label></div></div>
-<div class="field"><label>　使用台数</label><div><input type="number" name="water__cooler_in_use" value="" min="0" placeholder="台"> 台</div></div>
-<div class="field"><label>　未使用台数</label><div><input type="number" name="water__cooler_not_used" value="" min="0" placeholder="台"> 台</div></div>
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin:4px 0;">
+  <div class="field" style="flex:1; min-width:120px;"><label>冷水機の設置</label><div class="radios"><label><input type="radio" name="water__cooler_installed" value="有">有</label><label><input type="radio" name="water__cooler_installed" value="無">無</label></div></div>
+  <div class="field" style="flex:1; min-width:100px;"><label>使用台数</label><div style="display:flex; align-items:center; gap:6px;"><input type="number" name="water__cooler_in_use" value="" min="0" placeholder="台" style="width:auto; flex:1;"> 台</div></div>
+  <div class="field" style="flex:1; min-width:100px;"><label>未使用台数</label><div style="display:flex; align-items:center; gap:6px;"><input type="number" name="water__cooler_not_used" value="" min="0" placeholder="台" style="width:auto; flex:1;"> 台</div></div>
+</div>
 <div class="field"><label>冷水機管理状況（適切に管理されていること、点検記録を確認）</label><div class="radios"><label><input type="radio" name="water__cooler_mng" value="良">良</label><label><input type="radio" name="water__cooler_mng" value="不良">不良</label></div></div>
 <div class="field"><label>未使用の冷水機がある場合（使用不可等の管理がされているか）</label><div class="radios"><label><input type="radio" name="water__cooler_unused" value="良">良</label><label><input type="radio" name="water__cooler_unused" value="不良">不良</label></div></div>
 <div class="field" style="margin-top:14px;"><label style="font-weight:700;color:var(--primary);">── 当日の水質検査について ──</label></div>
